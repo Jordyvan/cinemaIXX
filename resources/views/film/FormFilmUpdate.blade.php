@@ -57,7 +57,7 @@
             
         </div>
         <div class="form-group">
-            <input type="file"  name="file" class="form-input"  required >
+            <input type="file"  name="file" class="form-input">
             @error('file')
                 <div class="invalid-feedback">
                     {{ $message }}

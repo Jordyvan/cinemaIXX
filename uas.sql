@@ -423,7 +423,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `birth_date` date DEFAULT NULL,
-  `image_user` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `image_user` varchar(255) COLLATE utf8mb4_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --

@@ -228,29 +228,48 @@ class MovieController extends Controller
     }
 
     public function UpdateFilm(Request $request){
-        $this->validate($request, [
-            'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
-            'title' => 'required',
-            'duration' => 'required',
-            'TrailLink' => 'required',
-            'Description' => 'required',
-		]);
-        $file = $request->file('file');
- 
-		$nama_file = time()."_".$file->getClientOriginalName();
-
-		$tujuan_upload = 'img';
-        $file->move($tujuan_upload,$nama_file);
+        if($request->file('file')){
+            $this->validate($request, [
+                'file' => 'required|file|image|mimes:jpeg,png,jpg|max:2048',
+                'title' => 'required',
+                'duration' => 'required',
+                'TrailLink' => 'required',
+                'Description' => 'required',
+            ]);
+            $file = $request->file('file');
+     
+            $nama_file = time()."_".$file->getClientOriginalName();
+    
+            $tujuan_upload = 'img';
+            $file->move($tujuan_upload,$nama_file);
+            
+    
+            film::where('film_id', $request->id)->update([
+                'film_title' => $request->title, 
+                'film_description' => $request->Description, 
+                'film_age' => $request->age ,
+                'film_duration_minute'=> $request->duration ,
+                'id_image' => $nama_file ,
+                'trailer_link' =>$request->TrailLink 
+            ]);
+        }else{
+            $this->validate($request, [
+                'title' => 'required',
+                'duration' => 'required',
+                'TrailLink' => 'required',
+                'Description' => 'required',
+            ]);
+            
+    
+            film::where('film_id', $request->id)->update([
+                'film_title' => $request->title, 
+                'film_description' => $request->Description, 
+                'film_age' => $request->age ,
+                'film_duration_minute'=> $request->duration ,
+                'trailer_link' =>$request->TrailLink 
+            ]);
+        }
         
-
-        film::where('film_id', $request->id)->update([
-            'film_title' => $request->title, 
-            'film_description' => $request->Description, 
-            'film_age' => $request->age ,
-            'film_duration_minute'=> $request->duration ,
-            'id_image' => $nama_file ,
-            'trailer_link' =>$request->TrailLink 
-        ]);
 
         return redirect('/movie')->with('status','Movie has been update succesfully');
     }

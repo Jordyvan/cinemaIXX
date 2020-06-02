@@ -29,8 +29,11 @@
       </tbody>
     </table>  
   @else
-      <h3>You Don't Have History</h3>
-      <h3>Please Book some movie to show your history</h3>
+  <div class="container mt-5">
+    <h4>You Don't Have History</h4>
+    <h4>Please Book some movie to show your history</h4>
+  </div>
+      
   @endif
     
 </div>
