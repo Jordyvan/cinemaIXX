@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-2">
             <a href="/addfilm">
-                <button type="submit" class="btn btn-primary mb-3" style="float: right" > Add Room</button>  
+                <button type="submit" class="btn btn-primary mb-3" style="float: right" > Add Movie</button>  
             </a>
         </div>
     </div>
